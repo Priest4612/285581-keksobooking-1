@@ -1,7 +1,7 @@
 # Личный проект «Кексобукинг» [![Build status][travis-image]][travis-url]
 
 * Студент: [Антон Кричевцов](https://up.htmlacademy.ru/javascript/9/user/285581).
-* Наставник: `Неизвестно`.
+* Наставник: `Нет`.
 
 ---
 
