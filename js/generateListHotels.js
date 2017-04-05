@@ -2,14 +2,12 @@
 window.generateListHotels = (function () {
   var getUniqueElement = function (arr) {
     var elem;
-    return function () {
-      while (!elem) {
-        var indexArr = window.utils.randomizer(arr.length);
-        elem = arr[indexArr];
-      }
-      elem = arr.splice(indexArr, 1);
-      return elem[0];
-    }();
+    while (!elem) {
+      var indexArr = window.utils.randomizer(arr.length);
+      elem = arr[indexArr];
+    }
+    elem = arr.splice(indexArr, 1);
+    return elem[0];
   };
 
   var getElementArray = function (arr) {
