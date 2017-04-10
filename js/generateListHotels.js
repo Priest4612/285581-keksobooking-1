@@ -3,7 +3,7 @@ window.generateListHotels = (function () {
   var getUniqueElement = function (arr) {
     var elem;
     while (!elem) {
-      var indexArr = window.utils.randomizer(arr.length);
+      var indexArr = window.randomizer.getNumberRnd(arr.length - 1);
       elem = arr[indexArr];
     }
     elem = arr.splice(indexArr, 1);
@@ -11,7 +11,7 @@ window.generateListHotels = (function () {
   };
 
   var getElementArray = function (arr) {
-    return arr[window.utils.randomizer(arr.length - 1)];
+    return arr[window.randomizer.getNumberRnd(arr.length - 1)];
   };
   var createNewArray = function (arr, length) {
     var newArray = [];
@@ -57,19 +57,19 @@ window.generateListHotels = (function () {
     author.avatar = 'img/avatars/user' + getUniqueElement(listNumAvatars) + '.png';
 
     var location = {};
-    location.x = window.utils.randomizer(minX, maxX);
-    location.y = window.utils.randomizer(minY, maxY);
+    location.x = window.randomizer.getNumberRangeRnd(minX, maxX);
+    location.y = window.randomizer.getNumberRangeRnd(minY, maxY);
 
     var offer = {};
     offer.title = getUniqueElement(listTitle);
     offer.address = location.x + ', ' + location.y;
-    offer.price = window.utils.randomizer(minPrice, maxPrice);
+    offer.price = window.randomizer.getNumberRangeRnd(minPrice, maxPrice);
     offer.type = getElementArray(typeHotel);
-    offer.rooms = window.utils.randomizer(minRooms, maxRooms);
+    offer.rooms = window.randomizer.getNumberRangeRnd(minRooms, maxRooms);
     offer.guests = offer.rooms * 2;
     offer.checkin = getElementArray(listTime);
     offer.checkout = getElementArray(listTime);
-    offer.features = createNewArray(listFeatures, window.utils.randomizer(listFeatures.length));
+    offer.features = createNewArray(listFeatures, window.randomizer.getNumberRnd(listFeatures.length));
     offer.description = '';
     offer.photos = [];
 
