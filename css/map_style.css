@@ -1,0 +1,8 @@
+.hidden {
+  display: none;
+}
+
+*[tabindex]:focus {
+  outline: none;
+  box-shadow: 0 0 10px 10px #ff6d51;
+}
