@@ -6,8 +6,8 @@
   var dialogClose = offerDialog.querySelector('.dialog__close');
   window.openCloseHandler.closeDialog(offerDialog, dialogClose, clsHidden);
 
-  var listHotels = window.generateListHotels();
-  window.renderElements.renderPins(listHotels);
+  var listHotels = window.data.generateListLodging();
+  window.pin.renderPins(listHotels);
 
   var pins = document.querySelectorAll('.pin:not(.pin__main)');
   for (var i = pins.length; i--;) {
@@ -24,7 +24,7 @@
     'bungalo': 0
   };
 
-  window.relationship.setMinPrice(lodgingType, price, priceTypeHotel);
+  window.form.setMinPrice(lodgingType, price, priceTypeHotel);
 
   var roomNumber = formContent.querySelector('#room_number');
   var roomCapacity = formContent.querySelector('#capacity');
@@ -34,13 +34,13 @@
     'room_3': 'guest_3'
   };
 
-  window.relationship.setCountGuests(roomNumber, roomCapacity, roomList);
+  window.form.setCountGuests(roomNumber, roomCapacity, roomList);
 
   var timeOut = document.querySelector('#timeout');
   var time = document.querySelector('#time');
 
-  window.relationship.setTime(time, timeOut);
-  window.relationship.setTime(timeOut, time);
+  window.form.setTime(time, timeOut);
+  window.form.setTime(timeOut, time);
 
   var form = document.querySelector('.notice__form');
   var submit = document.querySelector('.form__submit');

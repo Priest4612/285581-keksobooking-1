@@ -1,6 +1,6 @@
 'use strict';
 
-window.relationship = (function () {
+window.form = (function () {
   var module = {};
 
   module.setTime = function (activator, element) {
