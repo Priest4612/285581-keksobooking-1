@@ -6,3 +6,85 @@
   outline: none;
   box-shadow: 0 0 10px 10px #ff6d51;
 }
+
+.input-requirements {
+  font-size: 14px;
+  font-style: italic;
+  text-align: left;
+  list-style: disc;
+  list-style-position: inside;
+  max-width: 400px;
+  margin: 0px auto;
+  color: rgb(150,150,150);
+}
+
+/*input[type="text"]{
+  height: var(--fh-input-height);
+  -webkit-appearance: none;
+}*/
+
+/*input[type="text"] {
+  width: var(--fh-input-width);
+  max-width: var(--fh-input-max-width);
+  padding: calc( var(--fh-input-height) / 5 );
+  background-color: var(--fh-input-bg-color);
+
+  border-radius: var(--fh-border-radius);
+  border-width: var(--fh-border-width);
+  border-style: var(--fh-border-style);
+  border-color: var(--fh-border-color);
+}*/
+
+input:focus {
+  background-color: var(--fh-focus-bg-color);
+  border-color: var(--fh-focus-border-color);
+}
+
+input:not([type="submit"]) + .input-requirements {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 1s ease-out;
+}
+
+input:not([type="submit"]):hover + .input-requirements,
+input:not([type="submit"]):focus + .input-requirements,
+input:not([type="submit"]):active + .input-requirements {
+  max-height: 1000px; /* any large number (bigger then the .input-requirements list) */
+  transition: max-height 1s ease-in;
+}
+
+input:not([type="submit"]):valid {
+  border-color: #2ecc71;
+}
+
+
+.input-requirements li.invalid {
+	color: #e74c3c;
+}
+.input-requirements li.valid {
+	color: #2ecc71;
+}
+input.invalid {
+  border-color: #e74c3c;
+}
+input.valid {
+	border-color: #2ecc71;
+}
+
+.input-requirements li.valid:after {
+	display: inline-block;
+	padding-left: 0px;
+	content: "\2713";
+}
+
+ul {
+	list-style: none;
+  padding: 0;
+}
+
+.form__panel:first-of-type .form__element:last-of-type:not(.form__element--wide) {
+    padding-left: 25px;
+}
+/*.form__element {
+    padding-left: 0px;
+}*/

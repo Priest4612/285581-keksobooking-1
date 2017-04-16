@@ -41,12 +41,17 @@ window.generateListHotels = (function () {
   var listTime = ['12:00', '13:00', '14:00'];
   var listFeatures = ['wifi', 'dishwasher', 'parking', 'washer',
     'elevator', 'conditioner'];
+
   var minX = 300;
   var maxX = 900;
+  var pinX = 56 / 2;
   var minY = 100;
   var maxY = 500;
+  var pinY = 75 / 2;
+
   var minPrice = 1000;
   var maxPrice = 1000000;
+
   var minRooms = 1;
   var maxRooms = 5;
 
@@ -57,8 +62,8 @@ window.generateListHotels = (function () {
     author.avatar = 'img/avatars/user' + getUniqueElement(listNumAvatars) + '.png';
 
     var location = {};
-    location.x = window.randomizer.getNumberRangeRnd(minX, maxX);
-    location.y = window.randomizer.getNumberRangeRnd(minY, maxY);
+    location.x = window.randomizer.getNumberRangeRnd(minX, maxX) + pinX;
+    location.y = window.randomizer.getNumberRangeRnd(minY, maxY) + pinY;
 
     var offer = {};
     offer.title = getUniqueElement(listTitle);
