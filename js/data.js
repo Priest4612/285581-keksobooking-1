@@ -1,5 +1,6 @@
 'use strict';
-window.generateListHotels = (function () {
+window.data = (function () {
+  var module = {};
   var getUniqueElement = function (arr) {
     var elem;
     while (!elem) {
@@ -37,7 +38,7 @@ window.generateListHotels = (function () {
     'Уютное бунгало далеко от моря',
     'Неуютное бунгало по колено в воде'
   ];
-  var typeHotel = ['flat', 'house', 'bungalo'];
+  var typeLodging = ['flat', 'house', 'bungalo'];
   var listTime = ['12:00', '13:00', '14:00'];
   var listFeatures = ['wifi', 'dishwasher', 'parking', 'washer',
     'elevator', 'conditioner'];
@@ -56,8 +57,8 @@ window.generateListHotels = (function () {
   var maxRooms = 5;
 
 
-  var generateHotel = function () {
-    var hotel = {};
+  var generateLodging = function () {
+    var lodging = {};
     var author = {};
     author.avatar = 'img/avatars/user' + getUniqueElement(listNumAvatars) + '.png';
 
@@ -69,7 +70,7 @@ window.generateListHotels = (function () {
     offer.title = getUniqueElement(listTitle);
     offer.address = location.x + ', ' + location.y;
     offer.price = window.randomizer.getNumberRangeRnd(minPrice, maxPrice);
-    offer.type = getElementArray(typeHotel);
+    offer.type = getElementArray(typeLodging);
     offer.rooms = window.randomizer.getNumberRangeRnd(minRooms, maxRooms);
     offer.guests = offer.rooms * 2;
     offer.checkin = getElementArray(listTime);
@@ -78,21 +79,21 @@ window.generateListHotels = (function () {
     offer.description = '';
     offer.photos = [];
 
-    hotel.author = author;
-    hotel.offer = offer;
-    hotel.location = location;
+    lodging.author = author;
+    lodging.offer = offer;
+    lodging.location = location;
 
-    return hotel;
+    return lodging;
   };
 
 
-  var generateListHotels = function () {
-    var listHotels = [];
+  module.generateListLodging = function () {
+    var listLodging = [];
     for (var i = listNumAvatars.length; i--;) {
-      listHotels.push(generateHotel());
+      listLodging.push(generateLodging());
     }
-    return listHotels;
+    return listLodging;
   };
 
-  return generateListHotels;
+  return module;
 })();

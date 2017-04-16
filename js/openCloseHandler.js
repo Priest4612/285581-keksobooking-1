@@ -63,13 +63,13 @@ window.openCloseHandler = (function () {
     var hotel = renderUserDialog(activator, listHotels);
     activator.addEventListener('click', function () {
       isActivePin(activator);
-      window.renderElements.renderOfferDialog(hotel);
+      window.card.renderOfferDialog(hotel);
       openUserDialog(element, cssClass);
     });
     activator.addEventListener('keydown', function (evt) {
       if (window.utils.isActivateEvent(evt)) {
         isActivePin(activator);
-        window.renderElements.renderOfferDialog(hotel);
+        window.card.renderOfferDialog(hotel);
         openUserDialog(element, cssClass);
       }
     });
