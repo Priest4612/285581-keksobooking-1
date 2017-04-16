@@ -376,6 +376,9 @@ select option:hover {
 
 .form__element {
     margin-bottom: 10px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
 
 .form__element label {
