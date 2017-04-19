@@ -6,21 +6,21 @@ window.openCloseHandler = (function () {
   var cssClassActive = 'pin--active';
   var currentActivePin;
 
-  var isKeydownHandlerEsc = function (evt, element, cssClass) {
+  var isKeydownHandlerEsc = function isKeydownHandlerEsc(evt, element, cssClass) {
     if (window.utils.isDeactivateEvent(evt)) {
       closeUserDialog(element, cssClass);
     }
   };
 
-  var closeUserDialog = function (element, cssClass) {
+  var closeUserDialog = function closeUserDialog(element, cssClass) {
     element.classList.add(cssClass);
-    currentActivePin.classList.remove(cssClassActive);
+    isDeactivatePin(currentActivePin);
     document.removeEventListener('keydown', function (evt) {
       isKeydownHandlerEsc(evt, element, cssClass);
     });
   };
 
-  module.closeDialog = function (element, activator, cssClass) {
+  module.closeDialog = function closeDialog(element, activator, cssClass) {
     activator.addEventListener('click', function () {
       closeUserDialog(element, cssClass);
     });
@@ -32,14 +32,14 @@ window.openCloseHandler = (function () {
   };
 
 
-  var openUserDialog = function (element, cssClass) {
+  var openUserDialog = function openUserDialog(element, cssClass) {
     element.classList.remove(cssClass);
     document.addEventListener('keydown', function (evt) {
       isKeydownHandlerEsc(evt, element, cssClass);
     });
   };
 
-  var renderUserDialog = function (activator, arr) {
+  var renderUserDialog = function renderUserDialog(activator, arr) {
     var index = 0;
 
     // console.log(image.src.slice(2, -4));
@@ -51,15 +51,19 @@ window.openCloseHandler = (function () {
     return arr[index];
   };
 
-  var isActivePin = function (activator) {
-    if (currentActivePin) {
-      currentActivePin.classList.remove(cssClassActive);
+  var isDeactivatePin = function isDeactivatePin(activePin) {
+    if (activePin) {
+      activePin.classList.remove(cssClassActive);
     }
+  };
+
+  var isActivePin = function isActivePin(activator) {
+    isDeactivatePin(currentActivePin);
     currentActivePin = activator;
     activator.classList.add(cssClassActive);
   };
 
-  module.openDialog = function (element, activator, cssClass, listHotels) {
+  module.openDialog = function openDialog(element, activator, cssClass, listHotels) {
     var hotel = renderUserDialog(activator, listHotels);
     activator.addEventListener('click', function () {
       isActivePin(activator);
