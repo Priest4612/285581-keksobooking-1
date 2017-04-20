@@ -148,5 +148,12 @@ window.form = (function () {
     });
   };
 
+  var getAddres = function getAddres(element) {
+    var regexp = /\b\d+(\.?\d?)/g
+    element.addEventListener('keyup', function () {
+
+    })
+  }
+
   return module;
 })();

@@ -3,7 +3,7 @@
 window.drag = (function () {
   var module = {};
 
-  module.moveElement = function drag(dragElement, dragArea, offsetBottom, offsetTop) {
+  module.moveElement = function drag(dragElement, dragArea, offsetBottom, offsetTop, address) {
     dragElement.addEventListener('mousedown', function (evt) {
       evt.preventDefault();
       var startCoords = {
@@ -23,6 +23,9 @@ window.drag = (function () {
             dragElement.style.left = (dragElement.offsetLeft - shift.x) + 'px';
           }
         };
+        var setInputAddress = function setInputAddress() {
+          address.value = 'X: ' + (dragElement.offsetLeft + dragElement.offsetWidth / 2) + '; Y: ' + (dragElement.offsetTop + dragElement.offsetHeight);
+        };
 
 
         var shift = {
@@ -36,13 +39,14 @@ window.drag = (function () {
 
         moveTop(shift.y);
         moveLeft(shift.x);
+        setInputAddress();
       };
       var onMouseUp = function onMouseUp(upEvt) {
         upEvt.preventDefault();
-        document.removeEventListener('mousemove', onMouseMove);
+        dragArea.removeEventListener('mousemove', onMouseMove);
         document.removeEventListener('mouseup', onMouseUp);
       };
-      document.addEventListener('mousemove', onMouseMove);
+      dragArea.addEventListener('mousemove', onMouseMove);
       document.addEventListener('mouseup', onMouseUp);
     });
   };

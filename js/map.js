@@ -51,5 +51,6 @@
   var pinMain = tokyo.querySelector('.pin__main');
   var offsetTop = 150;
   var offsetBottom = 50;
-  window.drag.moveElement(pinMain, tokyo, offsetBottom, offsetTop);
+  var address = document.querySelector('#address');
+  window.drag.moveElement(pinMain, tokyo, offsetBottom, offsetTop, address);
 })();
