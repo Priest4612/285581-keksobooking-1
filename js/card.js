@@ -2,7 +2,7 @@
 
 window.card = (function () {
   var module = {};
-  module.renderOfferDialog = function (hotel) {
+  module.renderOfferDialog = function renderOfferDialog(hotel) {
     var offerDialog = document.querySelector('#offer-dialog');
     var dialogPanel = offerDialog.querySelector('.dialog__panel');
 

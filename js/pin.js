@@ -3,7 +3,7 @@
 window.pin = (function () {
   var module = {};
 
-  var renderPin = function (obj) {
+  var renderPin = function renderPin(obj) {
     var pin = document.createElement('div');
     pin.classList.add('pin');
     pin.style.position = 'absolute';
@@ -24,7 +24,7 @@ window.pin = (function () {
   };
 
 
-  module.renderPins = function (listHotels) {
+  module.renderPins = function renderPins(listHotels) {
     var fragment = document.createDocumentFragment();
     listHotels.forEach(function (obj) {
       fragment.appendChild(renderPin(obj));

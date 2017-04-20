@@ -3,7 +3,7 @@
 window.randomizer = (function () {
   var module = {};
 
-  module.getNumberRnd = function (maxNum) {
+  module.getNumberRnd = function getNumberRnd(maxNum) {
     var maxNumLen = String(maxNum).length;
     var numRnd = Math.floor(Math.pow(10, Math.floor(Math.random() * maxNumLen + 1)) * Math.random());
     while (numRnd > maxNum) {
@@ -13,11 +13,11 @@ window.randomizer = (function () {
   };
 
 
-  var getRandomBetween = function (min, max) {
+  var getRandomBetween = function getRandomBetween(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   };
 
-  var getRandomStr = function (len) {
+  var getRandomStr = function getRandomStr(len) {
     var randomStr = '';
     for (var j = 0; j < len; j++) {
       randomStr += getRandomBetween(0, 9).toString();
@@ -25,7 +25,7 @@ window.randomizer = (function () {
     return randomStr;
   };
 
-  module.getNumberRangeRnd = function (minNum, maxNum) {
+  module.getNumberRangeRnd = function getNumberRangeRnd(minNum, maxNum) {
     var fromLen = String(minNum).length;
     var toLen = String(maxNum).length;
 

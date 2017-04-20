@@ -1,7 +1,7 @@
 'use strict';
 window.data = (function () {
   var module = {};
-  var getUniqueElement = function (arr) {
+  var getUniqueElement = function getUniqueElement(arr) {
     var elem;
     while (!elem) {
       var indexArr = window.randomizer.getNumberRnd(arr.length - 1);
@@ -11,10 +11,10 @@ window.data = (function () {
     return elem[0];
   };
 
-  var getElementArray = function (arr) {
+  var getElementArray = function getElementArray(arr) {
     return arr[window.randomizer.getNumberRnd(arr.length - 1)];
   };
-  var createNewArray = function (arr, length) {
+  var createNewArray = function createNewArray(arr, length) {
     var newArray = [];
     var arrCopy = arr.slice();
     for (var i = length; i--;) {
@@ -57,7 +57,7 @@ window.data = (function () {
   var maxRooms = 5;
 
 
-  var generateLodging = function () {
+  var generateLodging = function generateLodging() {
     var lodging = {};
     var author = {};
     author.avatar = 'img/avatars/user' + getUniqueElement(listNumAvatars) + '.png';
@@ -87,7 +87,7 @@ window.data = (function () {
   };
 
 
-  module.generateListLodging = function () {
+  module.generateListLodging = function generateListLodging() {
     var listLodging = [];
     for (var i = listNumAvatars.length; i--;) {
       listLodging.push(generateLodging());
