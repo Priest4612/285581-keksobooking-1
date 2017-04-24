@@ -3,37 +3,40 @@
 window.form = (function () {
   var module = {};
 
-  module.setTime = function setTime(activator, element) {
-    activator.addEventListener('change', function (evt) {
-      element.selectedIndex = evt.target.selectedIndex;
-    });
+  var syncValue = {
+    price: function (evt, element, obj) {
+      var targetValue = evt.currentTarget.value;
+      element.value = obj[targetValue];
+      element.min = obj[[targetValue]];
+    },
+    value: function (evt, element, obj) {
+      var targetValue = evt.currentTarget.value;
+      element.value = obj[targetValue];
+    }
+  };
+
+  module.setTime = function setTime(activator, element, obj) {
+    window.synchronizeFields(activator, element, obj, syncValue.value);
   };
 
 
   module.setCountGuests = function setCountGuests(activator, element, obj) {
-    activator.addEventListener('change', function (evt) {
-      var targetValue = evt.target.value;
-      element.value = obj[targetValue];
-    });
+    window.synchronizeFields(activator, element, obj, syncValue.value);
   };
 
 
   module.setMinPrice = function setMinPrice(activator, element, obj) {
-    activator.addEventListener('change', function (evt) {
-      var targetValue = evt.target.value;
-      element.value = obj[targetValue];
-      element.min = obj[targetValue];
-    });
+    window.synchronizeFields(activator, element, obj, syncValue.price);
   };
 
 
-  function CustomValidation(input) {
+  var CustomValidation = function CustomValidation(input) {
     this.invalidities = [];
     this.validityChecks = [];
 
     this.inputNode = input;
     this.registerListener();
-  }
+  };
 
   CustomValidation.prototype = {
     addInvalidity: function addInvalidity(message) {
@@ -147,13 +150,6 @@ window.form = (function () {
       validate(inputs);
     });
   };
-
-  var getAddres = function getAddres(element) {
-    var regexp = /\b\d+(\.?\d?)/g
-    element.addEventListener('keyup', function () {
-
-    })
-  }
 
   return module;
 })();
