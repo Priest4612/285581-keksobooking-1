@@ -24,9 +24,9 @@ window.pin = (function () {
   };
 
 
-  module.renderPins = function renderPins(listHotels) {
+  module.renderPins = function renderPins(listLodging) {
     var fragment = document.createDocumentFragment();
-    listHotels.forEach(function (obj) {
+    listLodging.forEach(function (obj) {
       fragment.appendChild(renderPin(obj));
     });
     var tokyoPinMap = document.querySelector('.tokyo__pin-map');

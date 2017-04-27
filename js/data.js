@@ -86,14 +86,41 @@ window.data = (function () {
     return lodging;
   };
 
-
-  module.generateListLodging = function generateListLodging() {
-    var listLodging = [];
+  module.offers = [];
+  module.generateListLodgin = function generateListLodgin() {
     for (var i = listNumAvatars.length; i--;) {
-      listLodging.push(generateLodging());
+      module.offers.push(generateLodging());
     }
-    return listLodging;
+    return module.offers;
   };
+
+  // var self = window.data;
+  var loadData = function loadData(data, message) {
+    data.forEach(function (obj) {
+      module.offers.push(obj);
+    });
+    // for (var i = data.length; i--;) {
+    //   module.offers.push(generateLodging());
+    // }
+    // module.offers = data;
+    console.log(message);
+  };
+
+  var loadError = function loadError(message) {
+    console.log(message);
+  };
+
+  var getLoadData = function getLoadData() {
+    var DATA_URL = 'https://intensive-javascript-server-kjgvxfepjl.now.sh/keksobooking/data';
+    var load = window.load;
+    load(DATA_URL, loadData, loadError);
+  };
+
+  module.loadListLodgin = function loadListLodgin() {
+    getLoadData();
+    return module.offers;
+  };
+
 
   return module;
 })();

@@ -1,6 +1,7 @@
 'use strict';
 
 window.showCard = (function () {
+  var module = {};
   var cssClassActive = 'pin--active';
   var currentActivePin;
 
@@ -18,7 +19,7 @@ window.showCard = (function () {
     });
   };
 
-  var closeDialogHandler = function closeDialogHandler(element, activator, cssClass) {
+  module.closeDialogHandler = function closeDialogHandler(element, activator, cssClass) {
     activator.addEventListener('click', function () {
       closeUserDialog(element, cssClass);
     });
@@ -59,7 +60,7 @@ window.showCard = (function () {
     activator.classList.add(cssClassActive);
   };
 
-  var openDialogHadler = function openDialogHadler(element, activator, cssClass, listHotels) {
+  module.openDialogHadler = function openDialogHadler(element, activator, cssClass, listHotels) {
     var lodge = renderUserDialog(activator, listHotels);
     activator.addEventListener('click', function () {
       isActivePin(activator);
@@ -75,18 +76,5 @@ window.showCard = (function () {
     });
   };
 
-
-  var clsHidden = 'hidden';
-  var tokyo = document.querySelector('.tokyo');
-  var offerDialog = tokyo.querySelector('#offer-dialog');
-  var dialogClose = offerDialog.querySelector('.dialog__close');
-  var listHotels = window.data.generateListLodging();
-  return function () {
-    closeDialogHandler(offerDialog, dialogClose, clsHidden);
-    window.pin.renderPins(listHotels);
-    var pins = tokyo.querySelectorAll('.pin:not(.pin__main)');
-    for (var i = pins.length; i--;) {
-      openDialogHadler(offerDialog, pins[i], clsHidden, listHotels);
-    }
-  };
+  return module;
 })();
