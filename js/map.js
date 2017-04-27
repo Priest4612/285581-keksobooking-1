@@ -1,8 +1,8 @@
 'use strict';
 
-(function () {
-  window.showCard();
-
+window.map = (function () {
+  window.data.loadListLodgin();
+  var tokyo = document.querySelector('.tokyo');
   var form = document.querySelector('.notice__form');
   var lodgingType = form.querySelector('#type');
   var price = form.querySelector('#price');
@@ -39,7 +39,6 @@
   var inputPrice = form.querySelector('#price');
   window.form.validityForm(form, button, inputs, inputTitle, inputPrice);
 
-  var tokyo = document.querySelector('.tokyo');
   var pinMain = tokyo.querySelector('.pin__main');
   var offsetTop = 150;
   var offsetBottom = 50;

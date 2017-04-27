@@ -5,10 +5,12 @@ window.pin = (function () {
 
   var renderPin = function renderPin(obj) {
     var pin = document.createElement('div');
+    var pinX = 56 / 2;
+    var pinY = 75 / 2;
     pin.classList.add('pin');
     pin.style.position = 'absolute';
-    pin.style.left = obj.location.x + 'px';
-    pin.style.top = obj.location.y + 'px';
+    pin.style.left = obj.location.x - pinX + 'px';
+    pin.style.top = obj.location.y - pinY + 'px';
 
     var image = document.createElement('img');
     var widthImage = 40;
@@ -24,9 +26,9 @@ window.pin = (function () {
   };
 
 
-  module.renderPins = function renderPins(listHotels) {
+  module.renderPins = function renderPins(listLodging) {
     var fragment = document.createDocumentFragment();
-    listHotels.forEach(function (obj) {
+    listLodging.forEach(function (obj) {
       fragment.appendChild(renderPin(obj));
     });
     var tokyoPinMap = document.querySelector('.tokyo__pin-map');

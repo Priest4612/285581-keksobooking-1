@@ -17,5 +17,9 @@ window.utils = (function () {
     return isKeyboardEvent(evt) && evt.keyCode === ESCAPE_KEY_CODE;
   };
 
+  module.isFunctionCB = function checkCallBack(cb) {
+    return cb && typeof (cb) === 'function';
+  };
+
   return module;
 })();
