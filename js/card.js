@@ -42,6 +42,7 @@ window.card = (function () {
     });
 
     lodgeElement.querySelector('.lodge__description').textContent = lodge.offer.description;
+
     offerDialog.removeChild(dialogPanel);
     offerDialog.appendChild(lodgeElement);
   };

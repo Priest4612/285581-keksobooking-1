@@ -4,6 +4,11 @@ window.data = (function () {
   var tokyo = document.querySelector('.tokyo');
 
   var loadData = function (data, message) {
+    var filterResult = [];
+
+    var filterTypeLoge = function functionName() {
+
+    }
     window.pin.renderPins(data);
     window.popup(tokyo, message);
     var clsHidden = 'hidden';
@@ -11,9 +16,9 @@ window.data = (function () {
     var dialogClose = offerDialog.querySelector('.dialog__close');
     window.showCard.closeDialogHandler(offerDialog, dialogClose, clsHidden);
     var pins = tokyo.querySelectorAll('.pin:not(.pin__main)');
-    for (var i = pins.length; i--;) {
-      window.showCard.openDialogHadler(offerDialog, pins[i], clsHidden, data);
-    }
+    pins.forEach(function (pin) {
+      window.showCard.openDialogHadler(offerDialog, pin, clsHidden, data);
+    });
   };
 
   var loadError = function loadError(message) {
