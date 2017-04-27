@@ -5,10 +5,12 @@ window.pin = (function () {
 
   var renderPin = function renderPin(obj) {
     var pin = document.createElement('div');
+    var pinX = 56 / 2;
+    var pinY = 75 / 2;
     pin.classList.add('pin');
     pin.style.position = 'absolute';
-    pin.style.left = obj.location.x + 'px';
-    pin.style.top = obj.location.y + 'px';
+    pin.style.left = obj.location.x - pinX + 'px';
+    pin.style.top = obj.location.y - pinY + 'px';
 
     var image = document.createElement('img');
     var widthImage = 40;

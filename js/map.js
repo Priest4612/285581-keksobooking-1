@@ -1,20 +1,8 @@
 'use strict';
 
 window.map = (function () {
-  var clsHidden = 'hidden';
+  window.data.loadListLodgin();
   var tokyo = document.querySelector('.tokyo');
-  var offerDialog = tokyo.querySelector('#offer-dialog');
-  var dialogClose = offerDialog.querySelector('.dialog__close');
-  // var listLodging = window.data.generateListLodgin();
-  var listLodging = window.data.loadListLodgin();
-  window.pin.renderPins.call(window.map, listLodging);
-  window.showCard.closeDialogHandler(offerDialog, dialogClose, clsHidden);
-  var pins = tokyo.querySelectorAll('.pin:not(.pin__main)');
-  for (var i = pins.length; i--;) {
-    window.showCard.openDialogHadler(offerDialog, pins[i], clsHidden, listLodging);
-  }
-
-
   var form = document.querySelector('.notice__form');
   var lodgingType = form.querySelector('#type');
   var price = form.querySelector('#price');

@@ -61,7 +61,5 @@ window.load = (function load() {
     xhr.open('GET', url, true);
     xhr.send();
   };
-  return function () {
-    return module.loader;
-  }();
+  return module.loader;
 })();
