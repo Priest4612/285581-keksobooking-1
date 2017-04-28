@@ -39,9 +39,11 @@ window.showCard = (function () {
   };
 
   var renderUserDialog = function renderUserDialog(activator, arr) {
+    var pinX = 56 / 2;
+    var pinY = 75 / 2;
     var index = 0;
     for (var i = 0; i < arr.length; i++) {
-      if (activator.style.left === (arr[i].location.x + 'px') && activator.style.top === (arr[i].location.y + 'px')) {
+      if (activator.style.left === (arr[i].location.x - pinX + 'px') && activator.style.top === (arr[i].location.y - pinY + 'px')) {
         index = i;
       }
     }
