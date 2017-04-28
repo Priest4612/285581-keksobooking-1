@@ -21,5 +21,29 @@ window.utils = (function () {
     return cb && typeof (cb) === 'function';
   };
 
+  var getUniqueElement = function getUniqueElement(arr) {
+    var elem;
+    while (!elem) {
+      var indexArr = window.randomizer.getNumberRnd(arr.length - 1);
+      elem = arr[indexArr];
+    }
+    elem = arr.splice(indexArr, 1);
+    return elem[0];
+  };
+
+  module.createNewArray = function createNewArray(arr, length) {
+    var newArray = [];
+    var arrCopy = arr.slice();
+    for (var i = length; i--;) {
+      var elem = getUniqueElement(arrCopy);
+      while (!elem) {
+        elem = getUniqueElement(arrCopy);
+      }
+      newArray.push(elem);
+    }
+    return newArray;
+  };
+
+
   return module;
 })();

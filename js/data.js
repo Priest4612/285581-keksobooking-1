@@ -2,14 +2,30 @@
 window.data = (function () {
   var module = {};
   var tokyo = document.querySelector('.tokyo');
+  var filters = tokyo.querySelector('.tokyo__filters');
 
   var loadData = function (data, message) {
-    var filterResult = [];
+    var offersShow = 3;
+    var filterResult = window.utils.createNewArray(data, offersShow);
+    window.pin.renderPins(filterResult);
+    var updatePins = function () {
+      filterResult = window.filter(data);
+      var map = tokyo.querySelector('.tokyo__pin-map');
+      window.pin.removePins(map);
+      window.pin.renderPins(filterResult);
 
-    var filterTypeLoge = function functionName() {
-
-    }
-    window.pin.renderPins(data);
+      var clsHidden = 'hidden';
+      var offerDialog = tokyo.querySelector('#offer-dialog');
+      var dialogClose = offerDialog.querySelector('.dialog__close');
+      window.showCard.closeDialogHandler(offerDialog, dialogClose, clsHidden);
+      var pins = tokyo.querySelectorAll('.pin:not(.pin__main)');
+      pins.forEach(function (pin) {
+        window.showCard.openDialogHadler(offerDialog, pin, clsHidden, filterResult);
+      });
+    };
+    filters.addEventListener('change', function () {
+      window.debounce(updatePins, 500);
+    });
     window.popup(tokyo, message);
     var clsHidden = 'hidden';
     var offerDialog = tokyo.querySelector('#offer-dialog');
@@ -17,7 +33,7 @@ window.data = (function () {
     window.showCard.closeDialogHandler(offerDialog, dialogClose, clsHidden);
     var pins = tokyo.querySelectorAll('.pin:not(.pin__main)');
     pins.forEach(function (pin) {
-      window.showCard.openDialogHadler(offerDialog, pin, clsHidden, data);
+      window.showCard.openDialogHadler(offerDialog, pin, clsHidden, filterResult);
     });
   };
 

@@ -35,6 +35,13 @@ window.pin = (function () {
     tokyoPinMap.appendChild(fragment);
   };
 
+  module.removePins = function removePins(parrent) {
+    var pins = parrent.querySelectorAll('.pin:not(.pin__main)');
+    pins.forEach(function (pin) {
+      parrent.removeChild(pin);
+    });
+  };
+
 
   return module;
 })();
