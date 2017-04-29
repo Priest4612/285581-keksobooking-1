@@ -24,7 +24,6 @@ window.form = (function () {
     window.synchronizeFields(activator, element, obj, syncValue.value);
   };
 
-
   module.setMinPrice = function setMinPrice(activator, element, obj) {
     window.synchronizeFields(activator, element, obj, syncValue.price);
   };
@@ -96,14 +95,14 @@ window.form = (function () {
       isInvalid: function isInvalid(input) {
         return input.value.length < 30;
       },
-      invalidityMessage: 'Название должго быть не короче 30 знаков',
+      invalidityMessage: 'Название должно быть не короче 30 знаков',
       element: document.querySelector('label[for="title"] .input-requirements li:nth-child(1)')
     },
     {
       isInvalid: function isInvalid(input) {
         return input.value.length > 100;
       },
-      invalidityMessage: 'Название должго быть короче 100 знаков',
+      invalidityMessage: 'Название должно быть короче 100 знаков',
       element: document.querySelector('label[for="title"] .input-requirements li:nth-child(2)')
     },
   ];
@@ -125,6 +124,62 @@ window.form = (function () {
     }
   ];
 
+  var paramAddres = {
+    minX: 38.5,
+    maxX: 1200,
+    minY: 150,
+    maxY: 650
+  };
+  var regexp = /\d{1,4}\.?\d?/g;
+
+  var lodgingAddressValidityChecks = [
+    {
+      isInvalid: function isInvalid(input) {
+        return input.value.length === 0;
+      },
+      invalidityMessage: 'Введите адрес',
+      element: document.querySelector('label[for="address"] .input-requirements li:nth-child(1)')
+    },
+    {
+      isInvalid: function isInvalid(input) {
+        var arrCoord = input.value.match(regexp);
+        return arrCoord === null ? true : arrCoord.length !== 2;
+      },
+      invalidityMessage: 'Введите 2 координаты',
+      element: document.querySelector('label[for="address"] .input-requirements li:nth-child(2)')
+    },
+    {
+      isInvalid: function isInvalid(input) {
+        var coordX;
+        var coord = input.value.match(regexp);
+        var coordLength = coord === null ? 0 : coord.length;
+        if (coordLength >= 1) {
+          coordX = coord[0];
+        } else {
+          coordX = -1;
+        }
+        return coordX < paramAddres.minX || coordX > paramAddres.maxX;
+      },
+      invalidityMessage: 'Величина X должна быть от 38.5 до 1200',
+      element: document.querySelector('label[for="address"] .input-requirements li:nth-child(3)')
+    },
+    {
+      isInvalid: function isInvalid(input) {
+        var coordY;
+        var coord = input.value.match(regexp);
+        var coordLength = coord === null ? 0 : coord.length;
+        if (coordLength >= 2) {
+          coordY = coord[1];
+        } else {
+          coordY = -1;
+        }
+        return coordY <= paramAddres.minY || coordY >= paramAddres.maxY;
+      },
+      invalidityMessage: 'Величина Y должна быть от 150 до 650',
+      element: document.querySelector('label[for="address"] .input-requirements li:nth-child(4)')
+    },
+  ];
+
   var validityTitle = function validityTitle(inputTitle) {
     inputTitle.CustomValidation = new CustomValidation(inputTitle);
     inputTitle.CustomValidation.validityChecks = lodgingTitleValidityChecks;
@@ -133,6 +188,10 @@ window.form = (function () {
     inputPrice.CustomValidation = new CustomValidation(inputPrice);
     inputPrice.CustomValidation.validityChecks = lodgingPriceValidityChecks;
   };
+  var validityAddress = function validityAddres(inputAddress, pinMain) {
+    inputAddress.CustomValidation = new CustomValidation(inputAddress);
+    inputAddress.CustomValidation.validityChecks = lodgingAddressValidityChecks;
+  };
 
   var validate = function validate(inputs) {
     for (var i = 0; i < inputs.length; i++) {
@@ -140,14 +199,23 @@ window.form = (function () {
     }
   };
 
-  module.validityForm = function validityForm(form, button, inputs, inputTitle, inputPrice) {
+  module.validityForm = function validityForm(form, button, inputs, inputTitle, inputPrice, inputAddress, pinMain) {
     validityTitle(inputTitle);
     validityPrice(inputPrice);
+    validityAddress(inputAddress, pinMain);
     button.addEventListener('click', function () {
       validate(inputs);
     });
     form.addEventListener('submit', function () {
       validate(inputs);
+    });
+  };
+
+  module.dragPinMain = function (inputAddress, pinMain) {
+    inputAddress.addEventListener('blur', function () {
+      var coord = inputAddress.value.match(regexp);
+      pinMain.style.left = (coord === null) ? pinMain.offsetLeft + 'px' : coord[0] + 'px';
+      pinMain.style.top = (coord === null) ? pinMain.offsetTop + 'px' : coord[1] + 'px';
     });
   };
 

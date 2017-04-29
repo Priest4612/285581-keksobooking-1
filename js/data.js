@@ -4,8 +4,11 @@ window.data = (function () {
   var tokyo = document.querySelector('.tokyo');
   var filters = tokyo.querySelector('.tokyo__filters');
 
+  var clsHidden = 'hidden';
+  var offersShow = 3;
+  var offerDialog = tokyo.querySelector('#offer-dialog');
+  var dialogClose = offerDialog.querySelector('.dialog__close');
   var loadData = function (data, message) {
-    var offersShow = 3;
     var filterResult = window.utils.createNewArray(data, offersShow);
     window.pin.renderPins(filterResult);
     var updatePins = function () {
@@ -14,9 +17,6 @@ window.data = (function () {
       window.pin.removePins(map);
       window.pin.renderPins(filterResult);
 
-      var clsHidden = 'hidden';
-      var offerDialog = tokyo.querySelector('#offer-dialog');
-      var dialogClose = offerDialog.querySelector('.dialog__close');
       window.showCard.closeDialogHandler(offerDialog, dialogClose, clsHidden);
       var pins = tokyo.querySelectorAll('.pin:not(.pin__main)');
       pins.forEach(function (pin) {
@@ -27,9 +27,6 @@ window.data = (function () {
       window.debounce(updatePins, 500);
     });
     window.popup(tokyo, message);
-    var clsHidden = 'hidden';
-    var offerDialog = tokyo.querySelector('#offer-dialog');
-    var dialogClose = offerDialog.querySelector('.dialog__close');
     window.showCard.closeDialogHandler(offerDialog, dialogClose, clsHidden);
     var pins = tokyo.querySelectorAll('.pin:not(.pin__main)');
     pins.forEach(function (pin) {
