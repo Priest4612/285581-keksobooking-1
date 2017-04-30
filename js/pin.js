@@ -5,12 +5,10 @@ window.pin = (function () {
 
   var renderPin = function renderPin(obj) {
     var pin = document.createElement('div');
-    var pinX = 56 / 2;
-    var pinY = 75 / 2;
     pin.classList.add('pin');
     pin.style.position = 'absolute';
-    pin.style.left = obj.location.x - pinX + 'px';
-    pin.style.top = obj.location.y - pinY + 'px';
+    pin.style.left = obj.location.x - window.constants.pinMiddleX + 'px';
+    pin.style.top = obj.location.y - window.constants.pinHeight + 'px';
 
     var image = document.createElement('img');
     var widthImage = 40;
@@ -26,17 +24,15 @@ window.pin = (function () {
   };
 
 
-  module.renderPins = function renderPins(listLodging) {
+  module.renderPins = function renderPins(map, pinsData) {
     var fragment = document.createDocumentFragment();
-    listLodging.forEach(function (obj) {
-      fragment.appendChild(renderPin(obj));
+    pinsData.forEach(function (pinData) {
+      fragment.appendChild(renderPin(pinData));
     });
-    var tokyoPinMap = document.querySelector('.tokyo__pin-map');
-    tokyoPinMap.appendChild(fragment);
+    map.appendChild(fragment);
   };
 
-  module.removePins = function removePins(parrent) {
-    var pins = parrent.querySelectorAll('.pin:not(.pin__main)');
+  module.removePins = function removePins(parrent, pins) {
     pins.forEach(function (pin) {
       parrent.removeChild(pin);
     });

@@ -3,6 +3,11 @@
 window.drag = (function () {
   var module = {};
 
+
+  module.setInputAddress = function setInputAddress(address, dragElement, pinMainMiddleX, pinMainHeight) {
+    address.value = 'X: ' + (dragElement.offsetLeft + (pinMainMiddleX || 0)) + '; Y: ' + (dragElement.offsetTop + (pinMainHeight || 0));
+  };
+
   module.moveElement = function drag(dragElement, dragArea, offsetBottom, offsetTop, address) {
     dragElement.addEventListener('mousedown', function (evt) {
       evt.preventDefault();
@@ -23,10 +28,6 @@ window.drag = (function () {
             dragElement.style.left = (dragElement.offsetLeft - shift.x) + 'px';
           }
         };
-        var setInputAddress = function setInputAddress() {
-          address.value = 'X: ' + (dragElement.offsetLeft + dragElement.offsetWidth / 2) + '; Y: ' + (dragElement.offsetTop + dragElement.offsetHeight);
-        };
-
 
         var shift = {
           x: startCoords.x - moveEvt.clientX,
@@ -39,7 +40,7 @@ window.drag = (function () {
 
         moveTop(shift.y);
         moveLeft(shift.x);
-        setInputAddress();
+        module.setInputAddress(address, dragElement, window.constants.pinMainMiddleX, window.constants.pinMainHeight);
       };
       var onMouseUp = function onMouseUp(upEvt) {
         upEvt.preventDefault();
