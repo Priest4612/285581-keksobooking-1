@@ -19,7 +19,7 @@ window.load = (function load() {
         switch (Math.floor(status / 100) * 100) {
           case httpStatus.success:
             if (window.utils.isFunctionCB(successCallBack)) {
-              successCallBack.call(window.data, request.response, 'Данные успешно загруженны');
+              successCallBack.call(window.data, request.response, 'Данные успешно загружены');
             }
             break;
           case httpStatus.clientError:

@@ -121,8 +121,8 @@
             <label for="title">Заголовок объявления
               <input id="title" type="text" required minlength="30" maxlength="100" placeholder="Милая, уютная квартирка, например">
       				<ul class="input-requirements">
-      					<li>Минимальная длинна названия 30 символов</li>
-      					<li>Максимальная длинна поля 100 символов</li>
+      					<li>Минимальная длина названия 30 символов</li>
+      					<li>Максимальная длина поля 100 символов</li>
       				</ul>
             </label>
           </div>
@@ -169,8 +169,15 @@
         </div>
         <div class="form__panel">
           <div class="form__element  form__element--wide">
-            <label for="address">Адрес</label>
-            <input id="address" type="text" readonly="true">
+            <label for="address">Адрес
+              <input id="address" type="text" required placeholder="Введите координаты X: 100; Y: 200 например">
+              <ul class="input-requirements">
+                <li>Укажите адрес</li>
+                <li>Введено больше 2 координат</li>
+                <li>Величина X должна быть от 38.5 до 1200</li>
+                <li>Величина Y должна быть от 150 до 650</li>
+              </label>
+            </ul>
           </div>
           <div class="form__row">
             <div class="form__element">
@@ -281,6 +288,7 @@
   </div>
 </template>
 
+  <script src="./js/constants.js" charset="utf-8" defer></script>
   <script src="./js/utils.js" charset="utf-8" defer></script>
   <script src="./js/randomizer.js" charset="utf-8" defer></script>
   <script src="./js/pin.js" charset="utf-8" defer></script>

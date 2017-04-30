@@ -39,11 +39,9 @@ window.showCard = (function () {
   };
 
   var renderUserDialog = function renderUserDialog(activator, arr) {
-    var pinX = 56 / 2;
-    var pinY = 75 / 2;
     var index = 0;
     for (var i = 0; i < arr.length; i++) {
-      if (activator.style.left === (arr[i].location.x - pinX + 'px') && activator.style.top === (arr[i].location.y - pinY + 'px')) {
+      if (activator.style.left === (arr[i].location.x - window.constants.pinMiddleX + 'px') && activator.style.top === (arr[i].location.y - window.constants.pinHeight + 'px')) {
         index = i;
       }
     }
@@ -61,19 +59,32 @@ window.showCard = (function () {
     currentActivePin = activator;
     activator.classList.add(cssClassActive);
   };
+  var openDialogEvent = function openDialogEvent(activator, lodge, element, cssClass) {
+    isActivePin(activator);
+    window.card.renderOfferDialog(lodge);
+    openUserDialog(element, cssClass);
+  };
 
   module.openDialogHadler = function openDialogHadler(element, activator, cssClass, listHotels) {
     var lodge = renderUserDialog(activator, listHotels);
-    activator.addEventListener('click', function () {
-      isActivePin(activator);
-      window.card.renderOfferDialog(lodge);
-      openUserDialog(element, cssClass);
+    activator.addEventListener('click', function openDialog() {
+      openDialogEvent(activator, lodge, element, cssClass);
     });
     activator.addEventListener('keydown', function (evt) {
       if (window.utils.isActivateEvent(evt)) {
-        isActivePin(activator);
-        window.card.renderOfferDialog(lodge);
-        openUserDialog(element, cssClass);
+        openDialogEvent(activator, lodge, element, cssClass);
+      }
+    });
+  };
+
+  module.removeOpenDialigHandler = function removeOpenDialigHandler(element, activator, cssClass, listHotels) {
+    var lodge = renderUserDialog(activator, listHotels);
+    activator.removeEventListener('click', function openDialog() {
+      openDialogEvent(activator, lodge, element, cssClass);
+    });
+    activator.removeEventListener('keydown', function (evt) {
+      if (window.utils.isActivateEvent(evt)) {
+        openDialogEvent(activator, lodge, element, cssClass);
       }
     });
   };
