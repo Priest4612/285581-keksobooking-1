@@ -216,6 +216,7 @@ window.form = (function () {
       var coord = inputAddress.value.match(regexp);
       pinMain.style.left = (coord === null) ? pinMain.offsetLeft + 'px' : coord[0] + 'px';
       pinMain.style.top = (coord === null) ? pinMain.offsetTop + 'px' : coord[1] + 'px';
+      window.drag.setInputAddress(inputAddress, pinMain);
     });
   };
 
